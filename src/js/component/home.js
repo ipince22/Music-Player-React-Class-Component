@@ -79,7 +79,7 @@ export class Home extends React.Component {
 
 		const audioPlayer = (
 			<>
-				<div>
+				<div className="audioPlayer">
 					<button
 						onClick={() => this.play(this.state.currentIndex - 1)}>
 						<i className="fa fa-caret-left" aria-hidden="true" />
@@ -107,7 +107,7 @@ export class Home extends React.Component {
 		return (
 			<>
 				{audioPlayer}
-				<ul>{liList}</ul>
+				{liList}
 			</>
 		);
 	}

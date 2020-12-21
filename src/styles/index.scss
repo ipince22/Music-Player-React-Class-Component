@@ -1,14 +1,18 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
 body{
-    background: rgb(69,61,65);
+background: rgb(69,61,65);
 background: radial-gradient(circle, rgba(69,61,65,1) 14%, rgba(0,0,0,1) 86%);
+
+}
+.audioPlayer{
+    text-align: center;
 }
 
 li{
   box-shadow: 2px 3px 5px lightgray;
     border: 1px solid gray;
-    text-align: left;
+    text-align: center;
 }
 li:hover{background: lightgray;}
 button{
