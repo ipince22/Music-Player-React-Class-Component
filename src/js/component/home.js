@@ -1,39 +1,13 @@
 import React from "react";
-
 //create your first component
 export class Home extends React.Component {
 	constructor() {
 		super();
-		//create a reference to the audio player
-		// this.audio = React.createRef();
 		this.audio = null; //will not change on reload. prefered: more flexible than method above
-
 		this.state = {
 			//changes on reload
 			currentIndex: 1,
-			songs: [
-				{
-					title: "South Park",
-					id: "south-park",
-					author: "Kyle",
-					url:
-						"https://assets.breatheco.de/apis/sound/files/cartoons/songs/south-park.mp3"
-				},
-				{
-					title: "Thunder Cats",
-					id: "thundercats",
-					author: "Moonra",
-					url:
-						"https://assets.breatheco.de/apis/sound/files/cartoons/songs/thundercats.mp3"
-				},
-				{
-					title: "X-Men",
-					id: "x-men",
-					author: "Profesor",
-					url:
-						"https://assets.breatheco.de/apis/sound/files/cartoons/songs/x-men.mp3"
-				}
-			]
+			songs: [{}]
 		};
 	}
 
@@ -41,18 +15,25 @@ export class Home extends React.Component {
 		this.pauseButton.style.display = "none";
 		fetch("https://assets.breatheco.de/apis/sound/songs")
 			.then(response => response.json())
-			.then(songs => this.setState({ songs }));
+			.then(songs => {
+				//console.log(songs);
+				this.setState({ songs });
+			});
 	}
+
 	//Every time you click on and <li></li> it will use the reference to stop the music player and reload it with a new song
+
 	changeTrack(i) {
 		this.setState({ currentIndex: i });
 		this.audio.current.pause();
 		this.audio.current.load();
 		this.audio.current.play();
 	}
+
 	play = i => {
 		var url = this.state.songs[i].url;
 		const songUrl = "https://assets.breatheco.de/apis/sound/" + url;
+		console.log("songUrl:" + songUrl);
 		this.audio.src = songUrl;
 		this.audio.play();
 		this.playButton.style.display = "none";
@@ -70,7 +51,9 @@ export class Home extends React.Component {
 			return (
 				<li
 					key={index}
-					onClick={() => this.play(this.state.currentIndex)}>
+					onClick={() => {
+						this.changeTrack(index);
+					}}>
 					<span> {index + 1}</span>
 					<span> {song.name} </span>
 				</li>
@@ -112,3 +95,4 @@ export class Home extends React.Component {
 		);
 	}
 }
+
