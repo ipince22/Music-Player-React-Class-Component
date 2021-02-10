@@ -1,4 +1,4 @@
-//reemplazar en home para probar--
+//reemplazar en home para probar------
 //------------------------------------------
 import React from "react";
 //create your first component
